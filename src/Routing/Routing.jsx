@@ -9,6 +9,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import { Navigate } from "react-router-dom";
 import ListUsers from "../components/Users/ListUsers";
 import Register from "../components/Auth/Register";
+import ResetPassword from "../components/Auth/ResetPassword";
 
 export default function Routing() {
   return (
@@ -29,6 +30,7 @@ export default function Routing() {
           </Route>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

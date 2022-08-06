@@ -119,6 +119,7 @@ function Row(props) {
         </TableCell>
         <TableCell>{row.name}</TableCell>
         <TableCell>{row.email}</TableCell>
+        <TableCell>{row.role}</TableCell>
         <TableCell />
       </TableRow>
       <TableRow>
@@ -246,6 +247,9 @@ export default function ListUsers() {
               </TableCell>
               <TableCell>
                 <p className="h5">Email</p>
+              </TableCell>
+              <TableCell>
+                <p className="h5">Role</p>
               </TableCell>
               <TableCell>
                 <SearchBar

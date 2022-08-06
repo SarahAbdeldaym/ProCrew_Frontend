@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import * as Requests from "../../Helpers/Requests";
+import { NavLink } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -68,6 +69,10 @@ export default function Login() {
             ></input>
           </div>
           <div className="d-flex d-flex justify-content-end">
+            <div className="d-flex align-items-center mx-3">
+              Forget Password? 
+			  <NavLink to="/reset-password" className="ms-2">Click here</NavLink>
+            </div>
             <button type="submit" className="btn btn-primary">
               Login
             </button>
