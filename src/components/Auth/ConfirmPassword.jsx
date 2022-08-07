@@ -3,9 +3,9 @@ import AlertMain from "../Alerts/AlertMain";
 import * as Requests from "../../Helpers/Requests";
 
 export default function Profile() {
-  const [oldPassword, setOldPassword] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [passwordConfirm, setPasswordConfirm] = React.useState("");
+
 
   // Alerts state
   const [severity, setSeverity] = React.useState("");
@@ -13,17 +13,15 @@ export default function Profile() {
   const [alert, setAlert] = React.useState(false);
   const handleAlertClose = () => setAlert(false);
 
-  let userData = JSON.parse(localStorage.getItem("userData"));
+  // let userData = JSON.parse(localStorage.getItem("userData"));
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let formData = {};
 
-	formData.email = userData.email;
-    formData.old_password = oldPassword;
-    formData.new_password = password;
-    formData.new_password_confirmation = passwordConfirm;
-    Requests.formRequest("confirm-password-change-profile", "post", formData)
+	formData.email = email;
+    formData.password = password;
+    Requests.formRequest("confirm-password-change", "post", formData)
       .then(() => {
         setSeverity("success");
         setMessage("Password Updated Successfully.");
@@ -37,35 +35,12 @@ export default function Profile() {
   };
   return (
     <>
-      <AlertMain
-        alert={alert}
-        severity={severity}
-        message={message}
-        handleAlertClose={handleAlertClose}
-      />
-      <title>Profile</title>
-      <div className="container my-4 profile">
-        <h3 className="mb-4 font-weight-normal">Manage Profile</h3>
-        <div className="card bg-dark">
-          <div className="card-header">
-            <h5 className="card-title mb-0">
-              <i className="fa fa-user-edit"></i> Edit Info
-            </h5>
-          </div>
-          <div className="card-body">
-            <div className="row mb-4">
-              <div className="form-group col-lg-4 col-md-6">
-                <label>User Name</label>
-                <div className="h5">{userData.name}</div>
-              </div>
-              <div className="form-group col-lg-4 col-md-6">
-                <label>Email</label>
-                <div>{userData.email}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <AlertMain
+      alert={alert}
+      severity={severity}
+      message={message}
+      handleAlertClose={handleAlertClose}
+    />
       <div className="container">
         <div className="card bg-dark">
           <div className="card-header">
@@ -77,12 +52,12 @@ export default function Profile() {
             <form className="form-signin">
               <div className="row mb-4">
                 <div className="form-group col-lg-4 col-md-6">
-                  <label>Old Password</label>
+                  <label>Email</label>
                   <input
-                    type="password"
+                    type="email"
                     className="form-control"
                     autoComplete="on"
-                    onChange={(e) => setOldPassword(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="form-group col-lg-4 col-md-6">
@@ -94,15 +69,7 @@ export default function Profile() {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <div className="form-group col-lg-4 col-md-6">
-                  <label>Confirm New Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    autoComplete="on"
-                    onChange={(e) => setPasswordConfirm(e.target.value)}
-                  />
-                </div>
+                
               </div>
               <div className="d-flex justify-content-center">
                 <input
