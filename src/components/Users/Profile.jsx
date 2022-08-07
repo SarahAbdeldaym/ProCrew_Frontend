@@ -19,10 +19,11 @@ export default function Profile() {
 
     let formData = {};
 
-	formData.email = userData.email;
+	  formData.email = userData.email;
     formData.old_password = oldPassword;
     formData.new_password = password;
     formData.new_password_confirmation = passwordConfirm;
+    console.log(formData)
     Requests.formRequest("confirm-password-change-profile", "post", formData)
       .then(() => {
         setSeverity("success");

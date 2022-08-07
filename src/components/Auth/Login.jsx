@@ -31,6 +31,8 @@ export default function Login() {
         if (response.data) {
           let userData = response.data;
           userData.token = response.data.token;
+          userData.email=user.email
+      
           localStorage.setItem("userData", JSON.stringify(userData));
         }
       })
